@@ -1,0 +1,39 @@
+<html>
+	<head>
+		
+		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script>
+			$.get('http://localhost:8000')
+			$.get('http://localhost:8000/cors')
+		</script>
+		<style>
+			.shadow{ 
+				background-color: rgba(217, 127, 185, .1); 
+				box-shadow: 3px 3px 3px 2px red; 
+				height: 20px; width: 100px; 
+				padding: 5px;
+				transform: rotate(45deg);
+			}
+			#col{
+				-moz-column-count:3;
+				-webkit-column-count:3;
+			}
+			@media (max-width: 600px) {
+				#col{
+					-moz-column-count:2;
+					-webkit-column-count:2;		
+				}
+				.shadow {
+					transform: rotate(-45deg);
+				}
+			}
+		</style>
+	</head>
+	
+	<body>
+		Trying to access
+		<div class="code"><div class="shadow">  my content </div></div>
+		<br/><br/><br/><br/>
+		<div class="code"><div id="col"> Die Berechnung von SGML-Strukturen (wie etwa HTML) wird als Reflow bezeichnet. In diesem Prozess wird die grundlegende Geometrie der zu formatierenden Objekte berechnet – etwa die Höhe oder die Breite eines Elements. Die zu formatierenden Objekte werden als frames (dt. Rahmen) bezeichnet[3] und sind nicht zu verwechseln mit den Frames, die das Laden einer HTML-Seite in eine andere ermöglichen.</div></div>
+	</body>
+</html>
