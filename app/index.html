@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script>
+			$.ajax({
+				url: 'http://localhost:8000',
+				type: "GET",
+				error: function(xhr, textStatus, error) {
+					$("#not-cors-response").text(textStatus)
+				}
+			});
+			$.ajax({
+				url: 'http://localhost:8000/cors',
+				type: "GET",
+				success: function(data, textStatus, xhr) {
+					$("#cors-response").text(xhr.getAllResponseHeaders());
+				}
+			});
+		</script>
+		<style>
+			.shadow{ 
+				background-color: rgba(0, 0, 0, .2); 
+				box-shadow: 3px 3px 3px 2px green; 
+				height: 20px; width: 98%; 
+				padding: 5px;
+			}
+			@media (max-width: 600px) {
+				.shadow {
+					box-shadow: 3px 3px 3px 2px blue;
+				}
+			}
+		</style>
+	</head>
+	
+	<body>
+		<br/>
+		<div class="shadow">Cross-Origin Resource Sharing</div>
+		<br/>
+
+		<h2>not CORS Request</h2>
+		<span>Request:</span>
+		<pre>URL: http://localhost:8000</pre>
+		<span>Response textStatus:</span>
+		<pre id="not-cors-response"></pre>
+		
+		<h2>CORS Request</h2>
+		<span>Request headers:</span>
+		<pre>URL: http://localhost:8000/cors</pre>
+		<span>Response headers:</span>
+		<pre id="cors-response"></pre>
+	</body>
+</html>

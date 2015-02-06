@@ -1,11 +1,29 @@
 #!/usr/bin/env python3
 
-import http.server
+from BaseHTTPServer import HTTPServer
+from BaseHTTPServer import BaseHTTPRequestHandler
+import json
 
-class CORSRequestHandler(http.server.SimpleHTTPRequestHandler):
-    def end_headers(self):
-        self.send_header('Access-Control-Allow-Origin', '*')
-        super().end_headers()
+class MyRequestHandler (BaseHTTPRequestHandler) :
 
-if __name__ == '__main__':
-    http.server.test(HandlerClass=CORSRequestHandler)
+    def do_GET(self) :
+
+        #send response code:
+        self.send_response(200)
+
+        if self.path == "/cors" :
+            #send headers:
+            self.send_header("Access-Control-Allow-Origin", "http://localhost:9000")
+            self.send_header("Access-Control-Expose-Headers", "Access-Control-Allow-Origin")
+           
+        self.send_header("Content-type", "application/json")
+
+        # send a blank line to end headers:
+        self.wfile.write("\n")
+
+        #send response:
+        json.dump({"data": "some-data"}, self.wfile)
+
+server = HTTPServer(("localhost", 8000), MyRequestHandler)
+
+server.serve_forever()
